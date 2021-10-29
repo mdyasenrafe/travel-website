@@ -10,7 +10,7 @@ const UseOrders = () => {
   // get value from context api
   const { user } = UseAuth();
   useEffect(() => {
-    fetch("http://localhost:5000/orders")
+    fetch("https://ancient-forest-11611.herokuapp.com/orders")
       .then((res) => res.json())
       .then((data) => {
         setOrders(data);

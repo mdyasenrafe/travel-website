@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
 import HashLoader from "react-spinners/HashLoader";
 import { css } from "@emotion/react";
@@ -7,6 +7,7 @@ import swal from "sweetalert";
 
 const MyOrders = () => {
   const { myOrders, setMyorders, loading } = UseOrders();
+  let [color, setColor] = useState("#FF0000");
   const override = css`
     display: block;
     margin: 0 auto;
@@ -20,7 +21,7 @@ const MyOrders = () => {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        fetch(`http://localhost:5000/orders/${info._id}`, {
+        fetch(`https://ancient-forest-11611.herokuapp.com/orders/${info._id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -45,7 +46,12 @@ const MyOrders = () => {
           <div className="text-center pb-5">
             <h2 className="fw-bold">My Orders</h2>
           </div>
-          <HashLoader loading={loading} css={override} size={150} />
+          <HashLoader
+            color={color}
+            loading={loading}
+            css={override}
+            size={150}
+          />
 
           <Row xs={1} md={2} lg={3}>
             {myOrders.map((data) => (

@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory, useLocation } from "react-router";
+import { useHistory, useLocation } from "react-router-dom";
 import UseAuth from "../../Hooks/UseAuth";
 
 const Login = () => {
@@ -13,11 +13,11 @@ const Login = () => {
   } = UseAuth();
   const history = useHistory();
   const location = useLocation();
-  const redirect_url = location.state?.from || "/home";
+  const redirectUrl = location?.state?.from || "/home";
   const handleGogleSignIn = () => {
     signinGogle()
       .then((result) => {
-        history.push(redirect_url);
+        history.push(redirectUrl);
         setUser(result);
         setFirebaseError("");
         setIsLoading(false);
