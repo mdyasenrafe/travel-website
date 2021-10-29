@@ -1,23 +1,27 @@
 import React, { useEffect, useState } from "react";
+import { css } from "@emotion/react";
 import { Container, Row } from "react-bootstrap";
+import HashLoader from "react-spinners/HashLoader";
 import SingleDestination from "../SingleDestination/SingleDestination";
+import UseDestinations from "../../../Hooks/UseDestinations";
 
 const Destinations = () => {
-  const [destinations, setDestinations] = useState([]);
-  useEffect(() => {
-    fetch("/Data.json")
-      .then((res) => res.json())
-      .then((data) => setDestinations(data));
-  }, []);
+  const { destinations, loading } = UseDestinations();
+  let [color, setColor] = useState("#FF0000");
+  const override = css`
+    display: block;
+    margin: 0 auto;
+  `;
   return (
-    <section>
+    <section className="py-5">
       <Container>
-        <div className="text-center py-5">
+        <div className="text-center pb-5">
           <h2 className="fw-bold">Our Destinations</h2>
         </div>
+        <HashLoader color={color} loading={loading} css={override} size={150} />
         <Row xs={1} md={2} lg={3} className="g-4">
           {destinations.map((data) => (
-            <SingleDestination data={data}></SingleDestination>
+            <SingleDestination key={data._id} data={data}></SingleDestination>
           ))}
         </Row>
       </Container>

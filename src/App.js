@@ -7,10 +7,16 @@ import NavBar from "./Componets/NavBar/NavBar";
 import About from "./Componets/HomePage/About/About";
 import Destinations from "./Componets/HomePage/Destinations/Destinations";
 import Contact from "./Componets/HomePage/Contact/Contact";
+import Authprovider from "./Context/Authprovider";
+import Login from "./Componets/Login/Login";
+import PrivateRoute from "./Componets/PrivateRoute/PrivateRoute";
+import PalaceOrder from "./Componets/PalaceOrder/PalaceOrder";
+import Footer from "./Componets/Footer/Footer";
+import MyOrders from "./Componets/MyOrdersPage/MyOrders/MyOrders";
 
 function App() {
   return (
-    <>
+    <Authprovider>
       <Router>
         <NavBar></NavBar>
         <Switch>
@@ -26,6 +32,15 @@ function App() {
           <Route path="/contact">
             <Contact></Contact>
           </Route>
+          <Route path="/login">
+            <Login></Login>
+          </Route>
+          <PrivateRoute path="/:id/place-order">
+            <PalaceOrder></PalaceOrder>
+          </PrivateRoute>
+          <PrivateRoute path="/my-orders">
+            <MyOrders></MyOrders>
+          </PrivateRoute>
           <Route exact path="/">
             <Home></Home>
           </Route>
@@ -33,8 +48,9 @@ function App() {
             <NotFound></NotFound>
           </Route>
         </Switch>
+        <Footer></Footer>
       </Router>
-    </>
+    </Authprovider>
   );
 }
 

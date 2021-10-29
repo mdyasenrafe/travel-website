@@ -1,8 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Card, Col } from "react-bootstrap";
 
 const SingleDestination = (props) => {
-  const { name, image, description, price } = props.data;
+  const { name, image, description, price, _id } = props.data;
+
   return (
     <Col>
       <Card className="h-100 border-0 shadow-lg p-3">
@@ -18,7 +20,9 @@ const SingleDestination = (props) => {
           </Card.Text>
         </Card.Body>
         <Card.Footer className="border-0">
-          <button className="btn btn-danger">Book Now</button>
+          <Link to={`/${_id}/place-order`}>
+            <button className="btn btn-danger">Book Now</button>
+          </Link>
         </Card.Footer>
       </Card>
     </Col>
