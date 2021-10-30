@@ -4,6 +4,7 @@ import { Container, Row } from "react-bootstrap";
 import HashLoader from "react-spinners/HashLoader";
 import SingleDestination from "../SingleDestination/SingleDestination";
 import UseDestinations from "../../../Hooks/UseDestinations";
+import { Link } from "react-router-dom";
 
 const Destinations = () => {
   const { destinations, loading } = UseDestinations();
@@ -24,6 +25,11 @@ const Destinations = () => {
             <SingleDestination key={data._id} data={data}></SingleDestination>
           ))}
         </Row>
+        <Link to="/destinations">
+          <div className="text-center mt-5">
+            <button className="btn btn-danger">See More</button>
+          </div>
+        </Link>
       </Container>
     </section>
   );

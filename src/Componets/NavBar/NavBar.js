@@ -1,11 +1,12 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { LinkContainer } from "react-router-bootstrap";
-import { Container, Nav, Navbar } from "react-bootstrap";
+import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import UseAuth from "../../Hooks/UseAuth";
+import "./NavBar.css";
+import UseOrders from "../../Hooks/UseOrders";
 
 const NavBar = () => {
   const { user, logOut } = UseAuth();
-  // console.log(logOut);
   return (
     <Navbar bg="light" expand="lg" className="py-3">
       <Container>
@@ -31,16 +32,22 @@ const NavBar = () => {
             </LinkContainer>
             {user.displayName ? (
               <>
-                <LinkContainer to="/my-orders">
-                  <Nav.Link>My Orders</Nav.Link>
-                </LinkContainer>
-                <LinkContainer to="/all-orders">
-                  <Nav.Link>All Orders</Nav.Link>
-                </LinkContainer>
-                <LinkContainer to="/add-destinations">
-                  <Nav.Link>Add Destinations</Nav.Link>
-                </LinkContainer>
-                <span>{user.displayName}</span>
+                <NavDropdown
+                  className="text-center"
+                  title="Admin Panel"
+                  id="basic-nav-dropdown"
+                >
+                  <LinkContainer to="/my-orders">
+                    <NavDropdown.Item>My Orders</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to="/all-orders">
+                    <NavDropdown.Item>Manage All Orders</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to="/add-destinations">
+                    <NavDropdown.Item>Add Destinations</NavDropdown.Item>
+                  </LinkContainer>
+                </NavDropdown>
+                <span className="mx-2">{user.displayName} </span>
                 <button className="btn btn-danger" onClick={logOut}>
                   Logout
                 </button>
