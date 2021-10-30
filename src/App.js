@@ -14,6 +14,7 @@ import PalaceOrder from "./Componets/PalaceOrder/PalaceOrder";
 import Footer from "./Componets/Footer/Footer";
 import MyOrders from "./Componets/MyOrdersPage/MyOrders/MyOrders";
 import AllOrders from "./Componets/AllOrdersPage/AllOrders/AllOrders";
+import AddDestinations from "./Componets/AddDestinationsPage/AddDestinations/AddDestinations";
 
 function App() {
   return (
@@ -44,6 +45,9 @@ function App() {
           </PrivateRoute>
           <PrivateRoute path="/all-orders">
             <AllOrders></AllOrders>
+          </PrivateRoute>
+          <PrivateRoute path="/add-destinations">
+            <AddDestinations></AddDestinations>
           </PrivateRoute>
           <Route exact path="/">
             <Home></Home>

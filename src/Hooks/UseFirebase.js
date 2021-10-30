@@ -13,7 +13,7 @@ intilializeAuthFirebase();
 
 const UseFirebase = () => {
   const [user, setUser] = useState({});
-  const [firebaseError, setFirebaseError] = useState("");
+  const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
   const auth = getAuth();
@@ -38,7 +38,7 @@ const UseFirebase = () => {
             setIsLoading(false);
           })
           .catch((error) => {
-            setFirebaseError(error.message);
+            setError(error.message);
           })
           .finally(() => setIsLoading(false));
         swal("Your Aceount Log Out!!", {
@@ -59,8 +59,8 @@ const UseFirebase = () => {
   return {
     user,
     setUser,
-    firebaseError,
-    setFirebaseError,
+    error,
+    setError,
     isLoading,
     setIsLoading,
     signinGogle,

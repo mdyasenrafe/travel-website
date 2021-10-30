@@ -46,12 +46,22 @@ const AllOrder = (props) => {
           >
             Delete
           </button>
-          <button
-            onClick={() => handleApporve(props.data)}
-            className="btn btn-primary mx-2"
-          >
-            Apporve
-          </button>
+          {status == "approved" ? (
+            <button
+              onClick={() => handleApporve(props.data)}
+              className="btn btn-primary mx-2"
+              disabled
+            >
+              Approve
+            </button>
+          ) : (
+            <button
+              onClick={() => handleApporve(props.data)}
+              className="btn btn-primary mx-2"
+            >
+              Approve
+            </button>
+          )}
         </Card.Footer>
       </Card>
     </Col>

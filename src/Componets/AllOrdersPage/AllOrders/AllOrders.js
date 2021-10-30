@@ -6,8 +6,10 @@ import swal from "sweetalert";
 import UseOrders from "../../../Hooks/UseOrders";
 import AllOrder from "../AllOrder/AllOrder";
 import axios from "axios";
+import UseAuth from "../../../Hooks/UseAuth";
 
 const AllOrders = () => {
+  const { user } = UseAuth();
   const { orders, setOrders, loading } = UseOrders();
   let [color, setColor] = useState("#FF0000");
   const override = css`
@@ -44,11 +46,17 @@ const AllOrders = () => {
 
   //   handle Apporve
   const handleApporve = (info) => {
-    info["status"] = "apporved";
+    info["status"] = "approved";
     axios.put(`http://localhost:5000/orders/${info._id}`, info).then((res) => {
       if (res.data.acknowledged) {
-        window.location.reload();
-        alert("your order has been apporved");
+        swal({
+          text: `${user.displayName} order has been Approved`,
+          icon: "success",
+        }).then((willDelete) => {
+          if (willDelete) {
+            window.location.reload();
+          }
+        });
       }
     });
   };

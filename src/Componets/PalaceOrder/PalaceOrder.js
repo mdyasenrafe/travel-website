@@ -81,7 +81,7 @@ const PalaceOrder = () => {
         )}
         <FloatingLabel controlId="floatingInput" label="To" className="mb-3">
           <Form.Control
-            defaultValue={findDestinations?.name}
+            defaultValue={findDestinations?.name || ""}
             {...register("to", { required: true })}
             type="text"
             placeholder="to"
@@ -102,7 +102,7 @@ const PalaceOrder = () => {
         )}
         <FloatingLabel controlId="floatingInput" label="Price" className="mb-3">
           <Form.Control
-            defaultValue={findDestinations?.price}
+            defaultValue={findDestinations?.price || ""}
             {...register("price", { required: true })}
             type="text"
             placeholder="price"
