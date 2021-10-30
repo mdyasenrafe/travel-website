@@ -79,15 +79,18 @@ const PalaceOrder = () => {
             This field is required
           </span>
         )}
-        <FloatingLabel controlId="floatingInput" label="To" className="mb-3">
-          <Form.Control
-            defaultValue={findDestinations?.name || ""}
-            {...register("to", { required: true })}
-            type="text"
-            placeholder="to"
-            readOnly
-          />
-        </FloatingLabel>
+        {findDestinations?.name && (
+          <FloatingLabel controlId="floatingInput" label="To" className="mb-3">
+            <Form.Control
+              defaultValue={findDestinations?.name || ""}
+              {...register("to", { required: true })}
+              type="text"
+              placeholder="to"
+              readOnly
+            />
+          </FloatingLabel>
+        )}
+
         <FloatingLabel controlId="floatingInput" label="Date" className="mb-3">
           <Form.Control
             {...register("date", { required: true })}
@@ -100,15 +103,22 @@ const PalaceOrder = () => {
             This field is required
           </span>
         )}
-        <FloatingLabel controlId="floatingInput" label="Price" className="mb-3">
-          <Form.Control
-            defaultValue={findDestinations?.price || ""}
-            {...register("price", { required: true })}
-            type="text"
-            placeholder="price"
-            readOnly
-          />
-        </FloatingLabel>
+        {findDestinations?.price && (
+          <FloatingLabel
+            controlId="floatingInput"
+            label="Price"
+            className="mb-3"
+          >
+            <Form.Control
+              defaultValue={findDestinations?.price || ""}
+              {...register("price", { required: true })}
+              type="text"
+              placeholder="price"
+              readOnly
+            />
+          </FloatingLabel>
+        )}
+
         <input className="btn btn-danger w-100 d-block" type="submit" />
       </Form>
     </section>
