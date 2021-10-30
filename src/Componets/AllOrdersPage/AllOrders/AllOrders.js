@@ -49,7 +49,7 @@ const AllOrders = () => {
     info["status"] = "approved";
     axios
       .put(
-        `https://ancient-forest-11611.herokuapp.com//orders/${info._id}`,
+        `https://ancient-forest-11611.herokuapp.com/orders/${info._id}`,
         info
       )
       .then((res) => {
