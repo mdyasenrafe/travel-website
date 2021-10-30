@@ -47,18 +47,23 @@ const AllOrders = () => {
   //   handle Apporve
   const handleApporve = (info) => {
     info["status"] = "approved";
-    axios.put(`http://localhost:5000/orders/${info._id}`, info).then((res) => {
-      if (res.data.acknowledged) {
-        swal({
-          text: `${user.displayName} order has been Approved`,
-          icon: "success",
-        }).then((willDelete) => {
-          if (willDelete) {
-            window.location.reload();
-          }
-        });
-      }
-    });
+    axios
+      .put(
+        `https://ancient-forest-11611.herokuapp.com//orders/${info._id}`,
+        info
+      )
+      .then((res) => {
+        if (res.data.acknowledged) {
+          swal({
+            text: `${user.displayName} order has been Approved`,
+            icon: "success",
+          }).then((willDelete) => {
+            if (willDelete) {
+              window.location.reload();
+            }
+          });
+        }
+      });
   };
   return (
     <section className="py-5">
