@@ -3,11 +3,11 @@ import { useForm } from "react-hook-form";
 import { FloatingLabel, Form } from "react-bootstrap";
 import "./AddDestinations.css";
 import axios from "axios";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 
 const AddDestinations = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -26,7 +26,7 @@ const AddDestinations = () => {
             button: "Ok!",
           });
           reset();
-          history.push("/home");
+          navigate("/home");
         }
       });
   };

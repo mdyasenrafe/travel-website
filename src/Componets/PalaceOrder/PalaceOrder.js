@@ -3,7 +3,7 @@ import axios from "axios";
 import swal from "sweetalert";
 import { FloatingLabel, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import { useHistory, useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import UseAuth from "../../Hooks/UseAuth";
 import UseDestinations from "../../Hooks/UseDestinations";
 import "./PalaceOrder.css";
@@ -13,7 +13,7 @@ const PalaceOrder = () => {
   // get id from useparams
   const { id } = useParams();
   const { user } = UseAuth();
-  const history = useHistory();
+  const navigate = useNavigate();
   // delcare value from useform
   const {
     register,
@@ -39,7 +39,7 @@ const PalaceOrder = () => {
             button: "Ok!",
           });
           reset();
-          history.push("/home");
+          navigate("/home");
         }
       });
   };

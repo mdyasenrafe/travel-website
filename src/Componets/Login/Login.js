@@ -1,10 +1,10 @@
 import React from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import UseAuth from "../../Hooks/UseAuth";
 
 const Login = () => {
   const { setUser, setError, setIsLoading, error, signinGogle } = UseAuth();
-  let history = useHistory();
+  let navigate = useNavigate();
   let location = useLocation();
   const redirectUrl = location.state?.from || "/home";
 
@@ -12,7 +12,7 @@ const Login = () => {
   const handleGogleSignin = () => {
     signinGogle()
       .then((result) => {
-        history.push(redirectUrl);
+        navigate(redirectUrl);
         setError("");
         setIsLoading(false);
         setUser(result.user);

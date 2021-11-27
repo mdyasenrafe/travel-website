@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "./Componets/HomePage/Home/Home";
@@ -21,41 +21,58 @@ function App() {
     <Authprovider>
       <Router>
         <NavBar></NavBar>
-        <Switch>
-          <Route path="/home">
-            <Home></Home>
-          </Route>
-          <Route path="/about">
-            <About></About>
-          </Route>
-          <Route path="/destinations">
-            <Destinations></Destinations>
-          </Route>
-          <Route path="/contact">
-            <Contact></Contact>
-          </Route>
-          <Route path="/login">
-            <Login></Login>
-          </Route>
-          <PrivateRoute path="/:id/place-order">
-            <PalaceOrder></PalaceOrder>
-          </PrivateRoute>
-          <PrivateRoute path="/my-orders">
-            <MyOrders></MyOrders>
-          </PrivateRoute>
-          <PrivateRoute path="/all-orders">
-            <AllOrders></AllOrders>
-          </PrivateRoute>
-          <PrivateRoute path="/add-destinations">
-            <AddDestinations></AddDestinations>
-          </PrivateRoute>
-          <Route exact path="/">
-            <Home></Home>
-          </Route>
-          <Route path="*">
-            <NotFound></NotFound>
-          </Route>
-        </Switch>
+        <Routes>
+          <Route path="/home" element={<Home></Home>}></Route>
+          <Route path="/about" element={<About></About>}></Route>
+          <Route
+            path="/destinations"
+            element={<Destinations></Destinations>}
+          ></Route>
+          <Route path="/contact" element={<Contact></Contact>}></Route>
+          <Route path="/login" element={<Login></Login>}></Route>
+          <Route
+            path="/:id/place-order"
+            element={
+              <PrivateRoute>
+                <PalaceOrder></PalaceOrder>
+              </PrivateRoute>
+            }
+          ></Route>
+          <Route
+            path="/my-orders"
+            element={
+              <PrivateRoute>
+                <MyOrders></MyOrders>
+              </PrivateRoute>
+            }
+          ></Route>
+          <Route
+            path="/all-orders"
+            element={
+              <PrivateRoute>
+                <AllOrders></AllOrders>
+              </PrivateRoute>
+            }
+          ></Route>
+          <Route
+            path="/add-destinations"
+            element={
+              <PrivateRoute>
+                <AddDestinations></AddDestinations>
+              </PrivateRoute>
+            }
+          ></Route>
+          <Route
+            exact
+            path="/"
+            element={
+              <PrivateRoute>
+                <Home></Home>
+              </PrivateRoute>
+            }
+          ></Route>
+          <Route path="*" element={<NotFound></NotFound>}></Route>
+        </Routes>
         <Footer></Footer>
       </Router>
     </Authprovider>
